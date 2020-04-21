@@ -1,5 +1,7 @@
 #!/bin/bash
 # This program designed and developed by Mohsen Jalayeri in linux bash
+# This is a basic program and I will update it regularly.
+# you can access this file from: https://github.com/Mohsenj14/HW03
 
 # Define alphabet
 letter=(e t a o i n s h r d l c u m w f g y p b v k j x q z)
@@ -72,13 +74,42 @@ countword()
 {
 wordnumber=$(echo "$cypher" | wc -w)
 declare -A semicypher
+		arr=($cypher)
+#		echo ${arr[1]} 
+		#echo ${arr[2]}
+#semicypher[0,0]=${arr[0]}
+#semicypher[1,0]=1
 
-		echo ${cypher[1]} 
-		echo ${cypher[20]}
+
+for word in $cypher; do 
+#	echo $word; 
+#	echo $cypher | awk '{print gsub($word, "")}'
+
+	if [[ $cypher == *$word* ]]; then
+		echo "It's there!"
+		for ((k=0; k<${#semicypher[@]}; k++)); do
+		echo "in loop semi"
+			if [[ ${semicypher[$k]} == $word ]]; then
+				echo "Element $i matched"
+				semicypher[2,$k]=$((${semicypher[2,$k]}+1))
+			else
+				semicypher[1,$(($k+1))]=$word
+			fi
+		done
+	
+	fi
+done
+
+echo ${semicypher[0,1]}
+	
+#echo $cypher | awk '{print gsub(/GC/, "")}'
+
 #for ((i=0;i<$wordnumber;i++)) do
 	#for ((j=$((i+1));j<$wordnumber;j++)) do
-	#		echo ${cypher[i]} 
-	#		echo ${cypher[j]}
+	#		if [ ${semicypher[$i]} == ${arr[$j]} ]
+	#		then
+	#		semicypher[1,$i]=$(({$semicypher[1,$i]} + 1))
+	#		arr[$j]=" "
 	#done
 #done
 }
