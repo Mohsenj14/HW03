@@ -57,15 +57,18 @@ for ((i=1;i<=26;i++)) do
 	fi
 done
 letternumber[2,$ii]=0
-echo $char
-echo $max
+printf "\n=====================================\n"
+echo "**********  Find most repeat char = "$char
+echo "**********  Times of repeat = " $max
 
 }
 
 # Replace letter
 replace() {
-echo ${letter[$index]}
+echo "**********  Replaced with = "${letter[$index]}
 cypher=$(tr $char ${letter[$index]} <<<"$cypher")
+printf "=====================================\n\n"
+printf "********************   New text is:     ******************         \n\n"
 echo $cypher
 index=$index+1
 }
@@ -86,7 +89,7 @@ for word in $cypher; do
 #	echo $cypher | awk '{print gsub($word, "")}'
 
 	if [[ $cypher == *$word* ]]; then
-		echo "It's there!"
+		#echo "It's there!"
 		for ((k=0; k<${#semicypher[@]}; k++)); do
 		echo "in loop semi"
 			if [[ ${semicypher[$k]} == $word ]]; then
